@@ -1,0 +1,35 @@
+:root {
+  --custom-border: var(--clr-blue-900);
+  --custom-checked-bg: var(--clr-blue-500);
+  --custom-checked-border: var(--clr-blue-100);
+  --custom-checked-shadow: var(--clr-blue-100);
+}
+
+input.custom-radio[type="radio"] {
+  position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 3.1rem;
+  height: 3.1rem;
+  border-radius: 50%;
+  border: 1px solid var(--custom-border);
+  cursor: pointer;
+}
+
+input.custom-radio[type="radio"]:checked {
+  border-color: transparent;
+}
+
+input.custom-radio[type="radio"]:checked::after {
+  position: absolute;
+  content: "";
+  top: 0.7rem;
+  left: 0.7rem;
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--custom-checked-bg);
+  border: 1px solid var(--custom-checked-border);
+  box-shadow: 0 0 0 0.8rem var(--custom-checked-shadow);
+}
