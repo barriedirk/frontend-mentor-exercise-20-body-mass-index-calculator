@@ -222,7 +222,7 @@ main {
 
 .bmi-information__image {
   width: 100%;
-  max-width: 435px;
+  max-width: 43.5rem;
 }
 
 .bmi-information__content {
@@ -393,14 +393,12 @@ main {
 }
 
 @media screen and (min-width: 23.75em) {
-  /* 380px */
   .bmi-information {
     padding: 0 2.4rem;
   }
 }
 
 @media screen and (min-width: 26.25em) {
-  /* 420px */
   .bmi {
     margin-top: -22rem;
   }
@@ -412,7 +410,6 @@ main {
 }
 
 @media screen and (min-width: 31.625em) {
-  /* 506px */
   .bmi {
     margin-top: -28.5rem;
   }
@@ -424,8 +421,6 @@ main {
 }
 
 @media screen and (min-width: 48em) {
-  /* 768px */
-
   main {
     max-width: 100.2rem;
   }
@@ -508,9 +503,147 @@ main {
 }
 
 @media screen and (min-width: 60.625em) {
-  /* 970px */
-
   .bmi-information {
     transform: unset;
+  }
+}
+
+@media screen and (min-width: 90em) {
+  main {
+    max-width: 144rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero {
+    width: 100.2rem;
+    align-self: flex-start;
+    align-items: flex-start;
+    text-align: left;
+    padding: 7.5rem 14.4rem;
+    margin-bottom: 15rem;
+  }
+
+  .hero__logo {
+    width: 6.4rem;
+    height: 6.4rem;
+    margin-bottom: 7.2rem;
+  }
+
+  .hero__title {
+    font-size: 6.4rem;
+    text-wrap: balance;
+    margin-bottom: 3.2rem;
+  }
+
+  .hero__description {
+    max-width: 46ch;
+  }
+
+  .bmi {
+    position: absolute;
+    transform: translate(50%, 25%);
+    margin-top: 0;
+  }
+
+  .bmi__form {
+    max-width: 56.4rem;
+  }
+
+  .bmi-information {
+    max-width: 116rem;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+    gap: 13rem;
+    align-items: flex-end;
+    background-image: url("./assets/images/pattern-curved-line-left.svg");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 2.5rem) top;
+    padding-top: 3rem;
+  }
+
+  .bmi-information__content {
+    width: auto;
+    flex: 1;
+    margin-bottom: 2.5rem;
+  }
+
+  .bmi-information__image {
+    height: 53.3rem;
+    max-width: 56.4rem;
+    width: 56.4rem;
+  }
+
+  .bmi-information__title {
+    font-size: 4.8rem;
+  }
+
+  .bmi-benefits {
+    margin-top: 15rem;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0rem;
+    border-radius: 35px;
+    width: 140rem;
+    padding: 9.6rem 12.8rem;
+  }
+
+  .bmi-benefits__group {
+    flex-direction: row;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 0 0 36.5rem;
+  }
+
+  .bmi-limitations {
+    position: relative;
+    align-items: flex-start;
+    width: 115rem;
+    height: 70.4rem;
+    margin-top: 10.4rem;
+    padding: 0;
+    background-image: url("./assets/images/pattern-curved-line-right.svg");
+    background-repeat: no-repeat;
+    background-position: 18rem 23rem;
+    margin-bottom: 10rem;
+  }
+
+  .bmi-limitations__header {
+    gap: 3.2rem;
+    align-items: flex-start;
+    max-width: 55ch;
+  }
+
+  .bmi-limitations__title {
+    font-size: 4.8rem;
+  }
+
+  .bmi-limitations__description {
+    text-align: left;
+  }
+
+  .bmi-limitations__group {
+    width: 36.5rem;
+  }
+
+  .bmi-limitations__groups {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 96.1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 36.5rem);
+    justify-content: flex-end;
+    gap: 3.2rem;
+  }
+
+  .bmi-limitations__groups .bmi-limitations__group:nth-child(1) {
+    grid-column: 1 / span 2;
+    transform: translateX(75%);
+  }
+  .bmi-limitations__groups .bmi-limitations__group:nth-child(4),
+  .bmi-limitations__groups .bmi-limitations__group:nth-child(5) {
+    transform: translateX(-50%);
   }
 }
