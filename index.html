@@ -82,9 +82,9 @@
                 value="Metric"
                 id="bmi__form--option-metric"
                 name="option"
-                class="custom-radio"
-                aria-checked="true"
-                checked
+                class="custom-radio bmi__form--option"
+                aria-checked="false"
+                data-fieldset="#bmi__form--metric-measurement"
               />
               <span>Metric</span>
             </label>
@@ -98,8 +98,9 @@
                 value="Imperial"
                 id="bmi__form--option-imperial"
                 name="option"
-                class="custom-radio"
+                class="custom-radio bmi__form--option"
                 aria-checked="false"
+                data-fieldset="#bmi__form--imperial-measurement"
               />
 
               <span>Imperial</span>
@@ -107,10 +108,77 @@
           </fieldset>
 
           <fieldset
-            class="bmi__form--imperial-measurement flex-column-wrapper hidden"
-          ></fieldset>
+            id="bmi__form--imperial-measurement"
+            class="bmi__form--measurement bmi__form--imperial-measurement flex hidden"
+          >
+            <div class="bmi__form--groups">
+              <label class="bmi__form--label" for="height_ft">Height</label>
+              <div class="flex-row-wrapper">
+                <div class="bmi__form--group">
+                  <input
+                    type="text"
+                    class="bmi__form--input"
+                    name="height_ft"
+                    id="height_ft"
+                    value="0"
+                    maxlength="3"
+                    aria-describedby="height-ft-units"
+                    data-icon="ft"
+                  />
+                  <span class="bmi__form--input-prefix">ft</span>
+                </div>
+                <div class="bmi__form--group">
+                  <input
+                    type="text"
+                    class="bmi__form--input"
+                    name="height_in"
+                    id="height_in"
+                    value="0"
+                    maxlength="3"
+                    aria-describedby="height-in-units"
+                    data-icon="in"
+                  />
+                  <span class="bmi__form--input-prefix">in</span>
+                </div>
+              </div>
+            </div>
 
-          <fieldset class="bmi__form--metric-measurement flex-column-wrapper">
+            <div class="bmi__form--groups">
+              <label class="bmi__form--label" for="height_st">Weight</label>
+              <div class="flex-row-wrapper">
+                <div class="bmi__form--group systems-of-measurement--imperial">
+                  <input
+                    type="text"
+                    class="bmi__form--input"
+                    name="weight_st"
+                    value="0"
+                    maxlength="3"
+                    aria-describedby="weight-st-units"
+                    data-icon="st"
+                  />
+                  <span class="bmi__form--input-prefix">st</span>
+                </div>
+
+                <div class="bmi__form--group systems-of-measurement--imperial">
+                  <input
+                    type="text"
+                    class="bmi__form--input"
+                    name="weight_lbs"
+                    value="0"
+                    maxlength="3"
+                    aria-describedby="weight-lbs-units"
+                    data-icon="lbs"
+                  />
+                  <span class="bmi__form--input-prefix">lbs</span>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset
+            id="bmi__form--metric-measurement"
+            class="bmi__form--measurement bmi__form--metric-measurement flex hidden"
+          >
             <div class="bmi__form--group">
               <label class="bmi__form--label" for="height_cm">Height</label>
               <input
@@ -120,7 +188,8 @@
                 id="height_cm"
                 value="0"
                 maxlength="4"
-                aria-describedby="height-units"
+                aria-describedby="height-cm-units"
+                data-icon="cm"
               />
               <span class="bmi__form--input-prefix">cm</span>
             </div>
@@ -133,7 +202,8 @@
                 name="weight_kg"
                 value="0"
                 maxlength="4"
-                aria-describedby="weight-units"
+                aria-describedby="weight-kg-units"
+                data-icon="kg"
               />
               <span class="bmi__form--input-prefix">kg</span>
             </div>
@@ -157,7 +227,7 @@
         </form>
       </section>
 
-      <section class="bmi-information flex-column-wrapper">
+      <section class="bmi-information flex">
         <img
           class="bmi-information__image"
           src="./assets/images/image-man-eating.webp"

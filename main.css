@@ -49,9 +49,9 @@
   --clr-blue-100: hsl(228, 94%, 94%);
 
   --clr-gradient-left-right: linear-gradient(
-    to left,
-    hsl(183, 95%, 92%, 1),
-    hsl(216, 95%, 92%, 0)
+    to right,
+    hsl(183, 95%, 92%, 0),
+    hsl(216, 95%, 92%, 1)
   );
   --clr-gradient-left-right-1: linear-gradient(
     to left,
@@ -71,7 +71,12 @@ body {
 }
 
 main {
-  max-width: 37.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero,
@@ -88,6 +93,7 @@ main {
   align-items: center;
   text-align: center;
   height: 64rem;
+  width: 100%;
 }
 
 .hero__logo {
@@ -105,6 +111,7 @@ main {
   line-height: 1.1;
   color: var(--clr-blue-900);
   margin-bottom: 2.4rem;
+  max-width: 16ch;
 }
 
 .hero__description {
@@ -125,7 +132,7 @@ main {
   gap: 2.4rem;
   background-color: var(--clr-white);
   border-radius: 16px;
-  box-shadow: 0px 0px 75px 0px rgba(179, 211, 241, 1);
+  box-shadow: 16px 32px 56px 0 rgba(143, 174, 207, 0.25);
 }
 
 .bmi__form--title {
@@ -142,8 +149,8 @@ main {
   gap: 2rem;
 }
 
-.bmi__form--imperial-measurement,
-.bmi__form--metric-measurement {
+.bmi__form--measurement {
+  flex-direction: column;
   gap: 1.6rem;
 }
 
@@ -178,6 +185,10 @@ main {
   display: inline-block;
 }
 
+.bmi__form--groups > div {
+  gap: 1rem;
+}
+
 .bmi__form--group {
   position: relative;
 }
@@ -202,14 +213,16 @@ main {
 }
 
 .bmi-information {
+  flex-direction: column;
   gap: 4.8rem;
   margin-top: 80px;
   margin-bottom: 80px;
+  padding: 0;
 }
 
 .bmi-information__image {
   width: 100%;
-  max-width: 375px;
+  max-width: 435px;
 }
 
 .bmi-information__content {
@@ -234,6 +247,7 @@ main {
   background: var(--clr-gradient-left-right-1);
   padding: 4.8rem 2.4rem;
   gap: 4rem;
+  width: 100%;
 }
 
 .bmi-benefits__group {
@@ -299,7 +313,8 @@ main {
   gap: 2.4rem;
   border-radius: 16px;
   padding: 2.4rem;
-  box-shadow: 0px 0px 50px 5px rgba(179, 211, 241, 0.6);
+  box-shadow: 16px 32px 56px 0 rgba(143, 174, 207, 0.25);
+  background-color: var(--clr-white);
 }
 
 .bmi-limitations__group-title {
@@ -331,6 +346,10 @@ main {
 .font-semibold {
   font-family: var(--ff-semi-bold);
   font-weight: var(--fw-semibold);
+}
+
+.flex {
+  display: flex;
 }
 
 .flex-column-wrapper {
@@ -371,4 +390,127 @@ main {
   clip: rect(0 0 0 0);
   white-space: nowrap;
   border: 0;
+}
+
+@media screen and (min-width: 23.75em) {
+  /* 380px */
+  .bmi-information {
+    padding: 0 2.4rem;
+  }
+}
+
+@media screen and (min-width: 26.25em) {
+  /* 420px */
+  .bmi {
+    margin-top: -22rem;
+  }
+
+  .bmi-information {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 31.625em) {
+  /* 506px */
+  .bmi {
+    margin-top: -28.5rem;
+  }
+
+  .bmi-benefits__group {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 48em) {
+  /* 768px */
+
+  main {
+    max-width: 100.2rem;
+  }
+
+  .hero__logo {
+    margin-bottom: 4rem;
+  }
+
+  .bmi__form--measurement {
+    flex-direction: row;
+    gap: 2.4rem;
+  }
+
+  .bmi__form--imperial-measurement {
+    flex-direction: column;
+  }
+
+  .bmi__form--imperial-measurement .bmi__form--groups > div {
+    gap: 2.4rem;
+  }
+
+  .bmi__form {
+    padding: 3.2rem;
+    max-width: 68.6rem;
+  }
+
+  .bmi__form--message {
+    border-top-right-radius: 999px;
+    border-bottom-right-radius: 999px;
+  }
+
+  .bmi-benefits {
+    padding: 5rem 3.9rem;
+    align-items: center;
+  }
+
+  .bmi-benefits__group {
+    gap: 4rem;
+  }
+
+  .bmi-limitations__groups {
+    display: flex;
+    gap: 1.6rem;
+    height: unset;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+
+  .bmi-limitations__group {
+    flex: 0 0 33.5rem;
+  }
+
+  .bmi-information {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 84.1rem;
+    transform: translateX(-9%);
+    gap: 7.2rem;
+    padding: 0;
+  }
+
+  .bmi-information__content {
+    width: 331px;
+    flex: 0 0 331px;
+    text-align: left;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .bmi-information__image {
+    width: 435px;
+    height: 411.09px;
+  }
+
+  .bmi-limitations {
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 60.625em) {
+  /* 970px */
+
+  .bmi-information {
+    transform: unset;
+  }
 }
