@@ -60,6 +60,10 @@
   );
 }
 
+* {
+  transition: all 0.5s ease;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -96,10 +100,15 @@ main {
   width: 100%;
 }
 
+.hero__link {
+  display: inline-block;
+  text-decoration: none;
+  margin-bottom: 3.2rem;
+}
+
 .hero__logo {
   width: 4rem;
   height: 4rem;
-  margin-bottom: 3.2rem;
 }
 
 .hero__title {
@@ -200,6 +209,25 @@ main {
   padding: 3.2rem;
   font-size: 1.4rem;
   gap: 2.4rem;
+  flex-direction: column;
+}
+
+.bmi__form--message-groups {
+  flex-direction: column;
+}
+
+.bmi__form--message-bmi-is {
+  font-size: 1.6rem;
+}
+
+.bmi__form--message-bmi {
+  font-size: 4.8rem;
+  letter-spacing: -5%;
+}
+
+.bmi__form--message-detail {
+  font-size: 1.4rem;
+  line-height: 1.5;
 }
 
 .bmi__form--message-title {
@@ -414,9 +442,13 @@ main {
     margin-top: -28.5rem;
   }
 
-  .bmi-benefits__group {
+  .bmi__form--message-groups {
     flex-direction: row;
     align-items: center;
+  }
+
+  .bmi__form--message-groups .bmi__form--message-group:first-child {
+    flex: 0 0 30%;
   }
 }
 
@@ -425,7 +457,7 @@ main {
     max-width: 100.2rem;
   }
 
-  .hero__logo {
+  .hero__link {
     margin-bottom: 4rem;
   }
 
@@ -436,6 +468,14 @@ main {
 
   .bmi__form--imperial-measurement {
     flex-direction: column;
+  }
+
+  .bmi__form--message-groups .bmi__form--message-group:first-child {
+    flex: 0 0 50%;
+  }
+
+  .bmi__form--message-groups .bmi__form--message-group:last-child {
+    padding-right: 4rem;
   }
 
   .bmi__form--imperial-measurement .bmi__form--groups > div {
@@ -524,10 +564,13 @@ main {
     margin-bottom: 15rem;
   }
 
+  .hero__link {
+    margin-bottom: 7.2rem;
+  }
+
   .hero__logo {
     width: 6.4rem;
     height: 6.4rem;
-    margin-bottom: 7.2rem;
   }
 
   .hero__title {
@@ -594,6 +637,10 @@ main {
     flex-direction: column;
     align-items: flex-start;
     flex: 0 0 36.5rem;
+  }
+
+  .bmi__form--message-groups .bmi__form--message-group:first-child {
+    flex: 0 0 4 0%;
   }
 
   .bmi-limitations {

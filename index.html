@@ -49,13 +49,15 @@
   <body class="font-regular">
     <main>
       <header class="hero flex-column-wrapper" role="banner">
-        <img
-          class="hero__logo"
-          src="./assets/images/logo.svg"
-          alt="Company Logo"
-          role="img"
-          aria-label="Company logo"
-        />
+        <a href="./index.html" class="hero__link">
+          <img
+            class="hero__logo"
+            src="./assets/images/logo.svg"
+            alt="Company Logo"
+            role="img"
+            aria-label="Company logo"
+          />
+        </a>
         <h1 class="hero__title font-semibold">Body Mass Index Calculator</h1>
         <p class="hero__description">
           Better understand your weight in relation to your height using our
@@ -66,7 +68,7 @@
       </header>
 
       <section class="bmi" role="group" aria-labelledby="bmi__form--title">
-        <form class="bmi__form flex-column-wrapper">
+        <form class="bmi__form flex-column-wrapper" id="bmi__form">
           <h3 class="bmi__form--title font-semibold" id="bmi__form--title">
             Enter your details below
           </h3>
@@ -210,7 +212,8 @@
           </fieldset>
 
           <div
-            class="bmi__form--message flex-column-wrapper"
+            class="bmi__form--message flex"
+            id="bmi__form--message"
             role="region"
             aria-labelledby="bmi__form--message-title"
           >

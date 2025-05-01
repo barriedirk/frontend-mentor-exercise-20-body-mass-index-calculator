@@ -1,5 +1,18 @@
-const $ = (selector) => document.querySelector(selector);
-const $$ = (selector) => document.querySelectorAll(selector);
+import {
+  $,
+  $$,
+  injectBlankBMI,
+  injectResultBMI,
+  calculateImperialBMI,
+  calculateMetricBMI,
+  calculateIdealWeightImperialRange,
+  calculateMetricIdealWeightRange,
+  convertHeightToImperial,
+  convertWeightToImperial,
+  convertHeightToMetric,
+  convertWeightToMetric,
+  getFormValues,
+} from "./utils.js";
 
 (async () => {
   const optionMeasurementIds = [
@@ -11,9 +24,105 @@ const $$ = (selector) => document.querySelectorAll(selector);
     "#bmi__form--metric-measurement",
   ];
   const $$formInputText = $$(".bmi__form--input");
+  const $form = $("#bmi__form");
+  const $bmiMessage = $("#bmi__form--message");
+
+  const calculate = () => {
+    const data = getFormValues($form);
+    let bmi = 0,
+      idealWeightRange = "";
+
+    switch (data["option"]) {
+      case "Metric":
+        bmi = calculateMetricBMI({
+          heightCm: data["height_cm"],
+          weightKg: data["weight_kg"],
+        });
+        idealWeightRange =
+          bmi === 0 ? "" : calculateMetricIdealWeightRange(data["height_cm"]);
+
+        break;
+
+      case "Imperial":
+        bmi = calculateImperialBMI({
+          heightFt: data["height_ft"],
+          heightIn: data["height_in"],
+          weightSt: data["weight_st"],
+          weightLbs: data["weight_lbs"],
+        });
+        idealWeightRange =
+          bmi === 0
+            ? ""
+            : calculateIdealWeightImperialRange({
+                heightFt: data["height_ft"],
+                heightIn: data["height_in"],
+              });
+        break;
+    }
+
+    $bmiMessage.innerHTML =
+      bmi === 0 ? injectBlankBMI() : injectResultBMI(bmi, idealWeightRange);
+  };
+
+  $$formInputText.forEach(($input) => {
+    $input.value = "0";
+
+    $input.addEventListener("focus", (evt) => {
+      evt.target.select();
+    });
+
+    $input.addEventListener("blur", (evt) => {
+      const value = evt.target.value?.trim() ?? "0";
+
+      if (value === "") evt.target.value = "0";
+    });
+
+    $input.addEventListener("keyup", () => calculate());
+
+    $input.addEventListener("keydown", function (evt) {
+      const { key } = evt;
+
+      if (
+        !/[0-9]/.test(key) &&
+        !["Backspace", "Delete", "Tab", "ArrowLeft", "ArrowRight"].includes(key)
+      ) {
+        evt.preventDefault();
+      }
+    });
+  });
 
   optionMeasurementIds.forEach((key) => {
     $(key).addEventListener("click", (evt) => {
+      const value = evt.target.value;
+      const data = getFormValues($form);
+
+      switch (value) {
+        case "Imperial":
+          const { feet, inches } = convertHeightToImperial(data["height_cm"]);
+          const { stones, pounds } = convertWeightToImperial(data["weight_kg"]);
+
+          $('input[name="height_ft"]').value = feet;
+          $('input[name="height_in"]').value = inches;
+          $('input[name="weight_st"]').value = stones;
+          $('input[name="weight_lbs"]').value = pounds;
+
+          break;
+        case "Metric":
+          const heightCm = convertHeightToMetric(
+            data["height_ft"],
+            data["height_in"]
+          );
+          const weightKg = convertWeightToMetric(
+            data["weight_st"],
+            data["weight_lbs"]
+          );
+
+          $('input[name="height_cm"]').value = heightCm;
+          $('input[name="weight_kg"]').value = weightKg;
+
+          break;
+      }
+
       const fieldset = evt.target.getAttribute("data-fieldset");
       const $fieldset = $(fieldset);
 
@@ -37,6 +146,10 @@ const $$ = (selector) => document.querySelectorAll(selector);
       $fieldset.querySelectorAll(".bmi__form--input").forEach(($input) => {
         $input.disabled = false;
       });
+
+      console.log();
+
+      calculate();
     });
   });
 
