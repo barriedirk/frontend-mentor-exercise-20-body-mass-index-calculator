@@ -12,6 +12,8 @@ import {
   convertHeightToMetric,
   convertWeightToMetric,
   getFormValues,
+  keyDownNumber,
+  inputNumber,
 } from "./utils.js";
 
 (async () => {
@@ -67,9 +69,9 @@ import {
   $$formInputText.forEach(($input) => {
     $input.value = "0";
 
-    $input.addEventListener("focus", (evt) => {
-      evt.target.select();
-    });
+    $input.addEventListener("focus", (evt) => evt.target.select());
+    $input.addEventListener("keydown", keyDownNumber);
+    $input.addEventListener("input", inputNumber);
 
     $input.addEventListener("blur", (evt) => {
       const value = evt.target.value?.trim() ?? "0";
@@ -78,17 +80,6 @@ import {
     });
 
     $input.addEventListener("keyup", () => calculate());
-
-    $input.addEventListener("keydown", function (evt) {
-      const { key } = evt;
-
-      if (
-        !/[0-9]/.test(key) &&
-        !["Backspace", "Delete", "Tab", "ArrowLeft", "ArrowRight"].includes(key)
-      ) {
-        evt.preventDefault();
-      }
-    });
   });
 
   optionMeasurementIds.forEach((key) => {
@@ -134,14 +125,7 @@ import {
         $(fieldset).classList.add("hidden");
       });
 
-      optionMeasurementIds.forEach((option) => {
-        const $option = $(option);
-
-        $option.setAttribute("aria-checked", "false");
-      });
-
       $fieldset.classList.remove("hidden");
-      evt.target.setAttribute("aria-checked", "true");
 
       $fieldset.querySelectorAll(".bmi__form--input").forEach(($input) => {
         $input.disabled = false;

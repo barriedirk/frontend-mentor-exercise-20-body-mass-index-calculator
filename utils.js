@@ -133,7 +133,7 @@ export const convertWeightToMetric = (stones, pounds) => {
   const totalPounds = stones * 14 + pounds;
   const weightKg = totalPounds / 2.20462;
 
-  return (Math.round(weightKg * 10) / 10).toFixed(0);
+  return Math.round(weightKg * 10) / 10;
 };
 
 export const getFormValues = ($form) => {
@@ -144,4 +144,122 @@ export const getFormValues = ($form) => {
 
     return acc;
   }, {});
+};
+
+export const keyDownNumber = (e) => {
+  const allowedKeys = [
+    "Backspace",
+    "Tab",
+    "ArrowLeft",
+    "ArrowRight",
+    "Delete",
+    "Home",
+    "End",
+  ];
+  const decimalsAllowed = parseInt(
+    e.target.getAttribute("data-decimals") || "0",
+    10
+  );
+  const value = e.target.value;
+  const isCtrl = e.ctrlKey || e.metaKey;
+  const isAllSelected =
+    e.target.selectionStart === 0 && e.target.selectionEnd === value.length;
+
+  if (
+    allowedKeys.includes(e.key) || // Allow control keys
+    isCtrl // Allow Ctrl+C, Ctrl+V, etc.
+  ) {
+    return;
+  }
+
+  // Allow one dot if decimals > 0 and not already present
+  if (e.key === "." && decimalsAllowed > 0 && !value.includes(".")) {
+    return;
+  }
+
+  // Allow digits
+  if (/^\d$/.test(e.key)) {
+    // Prevent multiple leading zeros
+    // if (value === "0" && e.key === "0") {
+    //   e.preventDefault();
+    // }
+
+    // Prevent multiple leading zeros
+    if (value === "0" && e.key === "0" && !isAllSelected) {
+      e.preventDefault();
+      return;
+    }
+
+    // Prevent leading zero before non-dot (e.g. "01")
+    // if (value === "0" && e.key !== ".") {
+    //   e.preventDefault();
+    // }
+
+    // Prevent leading zero before non-dot (e.g. "01") unless all selected
+    if (value === "0" && e.key !== "." && !isAllSelected) {
+      e.preventDefault();
+      return;
+    }
+
+    // Prevent more decimals than allowed
+    // if (value.includes(".")) {
+    //   const [intPart, decPart] = value.split(".");
+    //   if (
+    //     decPart.length >= decimalsAllowed &&
+    //     e.target.selectionStart > value.indexOf(".")
+    //   ) {
+    //     e.preventDefault();
+    //   }
+    // }
+
+    // Prevent more decimals than allowed
+    if (value.includes(".")) {
+      const [intPart, decPart] = value.split(".");
+      const cursorPos = e.target.selectionStart;
+      const dotIndex = value.indexOf(".");
+
+      if (
+        cursorPos > dotIndex && // Cursor is in decimal part
+        decPart.length >= decimalsAllowed &&
+        e.target.selectionStart === e.target.selectionEnd // Not replacing selection
+      ) {
+        e.preventDefault();
+        return;
+      }
+    }
+
+    return;
+  }
+
+  // Block everything else
+  e.preventDefault();
+};
+
+export const inputNumber = (e) => {
+  const decimalsAllowed = parseInt(
+    e.target.getAttribute("data-decimals") || "0",
+    10
+  );
+  let val = e.target.value;
+
+  // Remove all non-digit and dot characters
+  val = val.replace(/[^0-9.]/g, "");
+
+  // Only keep the first dot
+  const firstDot = val.indexOf(".");
+  if (firstDot !== -1) {
+    const intPart = val.slice(0, firstDot);
+    let decPart = val.slice(firstDot + 1).replace(/\./g, "");
+
+    if (decimalsAllowed >= 0) {
+      decPart = decPart.slice(0, decimalsAllowed);
+    }
+
+    val = intPart + "." + decPart;
+  }
+
+  // Remove leading zeros unless followed by dot
+  val = val.replace(/^0+(?!\.)/, "");
+
+  e.target.value = val;
 };

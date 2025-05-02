@@ -48,13 +48,12 @@
   </head>
   <body class="font-regular">
     <main>
-      <header class="hero flex-column-wrapper" role="banner">
+      <header class="hero flex-column-wrapper">
         <a href="./index.html" class="hero__link">
           <img
             class="hero__logo"
             src="./assets/images/logo.svg"
             alt="Company Logo"
-            role="img"
             aria-label="Company logo"
           />
         </a>
@@ -69,9 +68,9 @@
 
       <section class="bmi" role="group" aria-labelledby="bmi__form--title">
         <form class="bmi__form flex-column-wrapper" id="bmi__form">
-          <h3 class="bmi__form--title font-semibold" id="bmi__form--title">
+          <h2 class="bmi__form--title font-semibold" id="bmi__form--title">
             Enter your details below
-          </h3>
+          </h2>
 
           <fieldset class="bmi__form--options flex-row-wrapper font-semibold">
             <legend class="sr-only">Choose your measurement system</legend>
@@ -85,7 +84,6 @@
                 id="bmi__form--option-metric"
                 name="option"
                 class="custom-radio bmi__form--option"
-                aria-checked="false"
                 data-fieldset="#bmi__form--metric-measurement"
               />
               <span>Metric</span>
@@ -101,7 +99,6 @@
                 id="bmi__form--option-imperial"
                 name="option"
                 class="custom-radio bmi__form--option"
-                aria-checked="false"
                 data-fieldset="#bmi__form--imperial-measurement"
               />
 
@@ -124,7 +121,6 @@
                     id="height_ft"
                     value="0"
                     maxlength="3"
-                    aria-describedby="height-ft-units"
                     data-icon="ft"
                   />
                   <span class="bmi__form--input-prefix">ft</span>
@@ -137,7 +133,6 @@
                     id="height_in"
                     value="0"
                     maxlength="3"
-                    aria-describedby="height-in-units"
                     data-icon="in"
                   />
                   <span class="bmi__form--input-prefix">in</span>
@@ -155,7 +150,6 @@
                     name="weight_st"
                     value="0"
                     maxlength="3"
-                    aria-describedby="weight-st-units"
                     data-icon="st"
                   />
                   <span class="bmi__form--input-prefix">st</span>
@@ -168,7 +162,6 @@
                     name="weight_lbs"
                     value="0"
                     maxlength="3"
-                    aria-describedby="weight-lbs-units"
                     data-icon="lbs"
                   />
                   <span class="bmi__form--input-prefix">lbs</span>
@@ -190,7 +183,6 @@
                 id="height_cm"
                 value="0"
                 maxlength="4"
-                aria-describedby="height-cm-units"
                 data-icon="cm"
               />
               <span class="bmi__form--input-prefix">cm</span>
@@ -202,10 +194,11 @@
                 type="text"
                 class="bmi__form--input"
                 name="weight_kg"
+                id="weight_kg"
                 value="0"
                 maxlength="4"
-                aria-describedby="weight-kg-units"
                 data-icon="kg"
+                data-decimals="1"
               />
               <span class="bmi__form--input-prefix">kg</span>
             </div>
